@@ -1,0 +1,24 @@
+.option pic      # Position Independent Code option
+        .text
+        .global main     # Make main visible to the linker
+main:
+        addi    sp, sp, -16
+        sw      ra, 12(sp)
+        sw      s0, 8(sp)
+        addi    s0, sp, 16
+        lui     a0, %hi(.L.str)
+        addi    a0, a0, %lo(.L.str)
+        addi    a1, s0, -12
+        call    scanf    # External function call
+        mv      a1, zero
+        sw      a0, -16(s0)
+        add     a0, zero, a1
+        lw      s0, 8(sp)
+        lw      ra, 12(sp)
+        addi    sp, sp, 16
+        ret
+
+        .section .rodata
+.L.str:
+        .asciz  "%d"
+        
