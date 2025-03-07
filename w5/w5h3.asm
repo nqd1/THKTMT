@@ -1,5 +1,5 @@
 .data
-string: .space 50
+string: .space 50 # 50 = max_len + '\0' + 1byte dự trữ tránh overflow?
 message1: .asciz "Nhap xau: "
 message2: .asciz "Do dai xau la: "
 .text
