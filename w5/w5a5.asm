@@ -1,5 +1,5 @@
 .data
-buffer: .space 21 # 20 characters + \0 + 1 byte tránh overflow
+buffer: .space 21 # 20 characters + \0 
 ask: .asciz "Enter a string (max 20 characters): "
 ans: .asciz "\nReversed string: "
 inverted_string: .space 21 # Space for the inverted string
