@@ -1,9 +1,11 @@
 .data
-buffer: .space 22 # 20 characters + \0 + 1 byte tránh overflow
+buffer: .space 21 # 20 characters + \0 + 1 byte tránh overflow
 ask: .asciz "Enter a string (max 20 characters): "
-inverted_string: .space 22 # Space for the inverted string
+ans: .asciz "\nReversed string: "
+inverted_string: .space 21 # Space for the inverted string
 err: .asciz "Entered string is empty"
 .text
+
 .globl main
 
 main:    
@@ -22,7 +24,10 @@ main:
 
     la a1, inverted_string
     jal ra, reverse_string
-
+    
+    la a0, ans
+    li a7, 4
+    ecall
     la a0, inverted_string
     li a7, 4 
     ecall
@@ -52,6 +57,14 @@ find_length:
 
 length_found:
     addi t0, t0, -1 
+    lbu t2, 0(t0)  # Kiểm tra ký tự cuối
+    li t3, 10      # '\n'
+    beq t2, t3, skip_last_char
+    j reverse
+
+skip_last_char:
+    addi t0, t0, -1 
+    addi t1, t1, -1
 
 reverse:
     lbu t2, 0(t0)
