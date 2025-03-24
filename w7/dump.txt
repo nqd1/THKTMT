@@ -1,0 +1,32 @@
+Address     Code        Basic                        Line Source
+
+0x00400000  jal x1,0x00000020            6    	jal WARP
+0x00400004  add x11,x8,x0                8    	add a1, s0, zero # a0 = result from N!
+0x00400008  addi x17,x0,0x00000038       9    	li a7, 56
+0x0040000c  auipc x10,0x0000fc10         10   	la a0, message
+0x00400010  addi x10,x10,0xfffffff4           
+0x00400014  ecall                        11   	ecall
+0x00400018  addi x17,x0,10               13   	li a7, 10 # term
+0x0040001c  ecall                        14   	ecall
+0x00400020  addi x2,x2,0xfffffffc        20   	addi sp, sp, -4 # adjust stack pointer
+0x00400024  sw x1,0(x2)                  21   	sw ra, 0(sp) # save return address
+0x00400028  addi x10,x0,3                22   	li a0, 3 # load test input N
+0x0040002c  jal x1,0x00000010            23   	jal FACT # call fact procedure
+0x00400030  lw x1,0(x2)                  24   	lw ra, 0(sp) # restore return address
+0x00400034  addi x2,x2,4                 25   	addi sp, sp, 4 # return stack pointer
+0x00400038  jalr x0,x1,0                 26   	jr ra
+0x0040003c  addi x2,x2,0xfffffff8        34   	addi sp, sp, -8 # allocate space for ra, a0 in stack
+0x00400040  sw x1,4(x2)                  35   	sw ra, 4(sp) # save ra register
+0x00400044  sw x10,0(x2)                 36   	sw a0, 0(sp) # save a0 register
+0x00400048  addi x5,x0,2                 37   	li t0, 2
+0x0040004c  bge x10,x5,0x0000000c        38   	bge a0, t0, recursive
+0x00400050  addi x8,x0,1                 39   	li s0, 1 # return the result N!=1
+0x00400054  jal x0,0x00000014            40   	j done
+0x00400058  addi x10,x10,0xffffffff      42   	addi a0, a0, -1 # adjust input argument
+0x0040005c  jal x1,0xffffffe0            43   	jal FACT # recursive call
+0x00400060  lw x9,0(x2)                  44   	lw s1, 0(sp) # load a0
+0x00400064  mul x8,x8,x9                 45   	mul s0, s0, s1
+0x00400068  lw x1,4(x2)                  47   	lw ra, 4(sp) # restore ra register
+0x0040006c  lw x10,0(x2)                 48   	lw a0, 0(sp) # restore a0 register
+0x00400070  addi x2,x2,8                 49   	addi sp,sp,8 # restore stack pointer
+0x00400074  jalr x0,x1,0                 50   	jr ra # jump to caller
