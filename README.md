@@ -1,6 +1,8 @@
 # Computer Architecture IT3280 2024.2
+![AssemblyScript](https://img.shields.io/badge/assembly%20script-%23000000.svg?style=for-the-badge&logo=assemblyscript&logoColor=white) </br>
+![RISC-V](https://img.shields.io/badge/RISC--V-%23000000.svg?style=for-the-badge&logo=riscv&logoColor=white) </br>
 
-This is the repository for the ASM Language and Computer Architecture Lab course at the Hanoi University of Science and Technology (HUST) in 2024.2. In this course, we will use RARS -- RISC-V Assembler and Runtime Simulator. The course is guided by PhD. Nguyen Dinh Thuan and MSc. Nguyen Duc Tien. It covers the following topics:
+This is the repository for the ASM Language and Computer Architecture Lab course at the Hanoi University of Science and Technology (HUST) in semester 2024.2. In this course, we will use RARS -- RISC-V Assembler and Runtime Simulator. The course is guided by PhD. Nguyen Dinh Thuan and MSc. Nguyen Duc Tien. It covers the following topics:
 
 - Introduction to the RARS tool  <a href="https://github.com/TheThirdOne/rars"> Download here</a>
 - Introduction to other tools   
